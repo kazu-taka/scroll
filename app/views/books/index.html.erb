@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+<div class="list jscroll">
+  <ul>
+    <% @books.each do |book| %>
+      <li><%= book.title %></li>
+      <li><%= book.body %></li>
+      <li><%= link_to 'Show', book %></li>
+      <li><%= link_to 'Edit', edit_book_path(book) %></li>
+      <li><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <% end %>
+  </ul>
+  <%= paginate @books %>
+</div>
+
+<br>
+
+
+<%= link_to 'New Book', new_book_path %>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+<script>
+        
+        
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.list',
+            nextSelector: 'span.next > a'
+          });
+    }
+});
+</script>
